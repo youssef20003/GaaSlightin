@@ -13,11 +13,10 @@ import { ResgenratorComponent } from './pages/resgenrator/resgenrator.component'
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: 'profile', pathMatch: 'full' },
     // Authentication Routes
     {
-        path: '', component: AuthLayoutComponent, children: [
-            //tempo do not remove
-            { path: '', redirectTo: 'profile', pathMatch: 'full' },
+        path: '', component: AuthLayoutComponent, children: [     
             { path: 'home', component: LandingComponent, title: 'Home' },
             { path: 'auth', component: AuthComponent, title: 'auth' },
             { path: 'signup', component: SignupComponent, title: 'Signup' }
