@@ -11,6 +11,7 @@ import { ResumeComponent } from './pages/resume/resume.component';
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 import { ResgenratorComponent } from './pages/resgenrator/resgenrator.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { JobDescreptionComponent } from './pages/job-descreption/job-descreption.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'profile', pathMatch: 'full' },
@@ -29,11 +30,13 @@ export const routes: Routes = [
             
             { path: 'profile', component: ProfileComponent, title: 'Profile' },
             { path: 'gaas', component: GaasComponent, title: 'GAAS' },
-            { path: 'jobs', component: JobsArchivalComponent, title: 'Jobs' },
+            { path: 'jobs', component: JobsArchivalComponent, title: 'Jobs'},
             { path: 'repos', component: RepoRankComponent, title: 'Repositories' },
             { path: 'resumes', component: ResumeComponent, title: 'Resumes' },
             { path: 'blog', component: BlogPostComponent, title: 'Blog' },
-            { path: 'generator', component: ResgenratorComponent, title: 'Resume Generator' }
+            { path: 'generator', component: ResgenratorComponent, title: 'Resume Generator' },
+            { path: 'job-descraption', component: JobDescreptionComponent, title: 'description' }
+
         ]
     },
 

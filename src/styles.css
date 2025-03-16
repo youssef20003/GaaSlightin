@@ -31,3 +31,8 @@ body{
     border-radius: 5px;
 }
 
+
+.btn-main{
+    @apply  text-[#064420] bg-white border-1 border-[#064420] hover:text-[#FDFAF6] hover:bg-[#064420] font-medium rounded-lg text-sm px-4 py-1  
+}
+

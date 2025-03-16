@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-jobs-archival',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './jobs-archival.component.html',
   styleUrl: './jobs-archival.component.css'
 })
