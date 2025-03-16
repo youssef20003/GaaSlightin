@@ -4,6 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+@theme {
+    --color-offwhite-dark: #FAF1E6;
+    --color-offwhite-light: #FDFAF6;
+    --color-green-dark: #064420;
+    --color-green-light: #E4EFE7;
+}
+
 :root {
     --main-color: #536878;
     --light-color: #EAE0C8;
