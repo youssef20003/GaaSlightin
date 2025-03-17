@@ -1,0 +1,32 @@
+/* component.css */
+.bg-gold {
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); /* Light gold */
+}
+  
+.bg-silver {
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); /* Light silver */
+}
+
+.bg-bronze {
+    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); /* Light bronze */
+}
+
+.text-gold {
+    color: #fcb69f; /* Light gold */
+}
+  
+.text-silver {
+    color: #c2e9fb; /* Light silver */
+}
+
+.text-bronze {
+    color: #e2ebf0; /* Light bronze */
+}
+
+.bg-white {
+    background: #ffffff;
+}
+
+.text-white {
+    color: #ffffff;
+}
