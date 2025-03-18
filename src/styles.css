@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
@@ -35,8 +34,3 @@ body{
     @apply  text-[#064420] bg-white border-1 border-[#064420] hover:text-[#FDFAF6] hover:bg-[#064420] font-medium rounded-lg text-sm px-4 py-1  
 }
 
-.pirata-one-regular {
-    font-family: "Pirata One", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}

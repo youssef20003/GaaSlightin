@@ -10,44 +10,67 @@
 </button>
 
 <aside id="sidebar-multi-level-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-offwhite-light"
+    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 asid-back"
     aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto">
-        <a routerLink="profile"  class="flex items-center ps-2.5 mb-5">
-            <img src="./imges/logo.webp" class="w-10 h-10"alt="">
-            <span class="self-center text-3xl font-semibold whitespace-nowrap pirata-one-regular">GaaSlightin</span>
+    <div class="flex flex-col h-full py-4 overflow-y-auto">
+        <a routerLink="profile" class="flex flex-col items-center ps-2.5 mb-5">
+            <img src="./imges/gaaslightin-high-resolution-logo-removebg-preview.png" class="w-auto h-[50px] " alt="">
+            <span
+                class="self-center text-3xl font-semibold whitespace-nowrap limelight-regular">GaaSlightin'</span>
         </a>
-        <ul class="space-y-2 font-medium">
+        <hr class="my-3 hr-stylish mb-10 w-full">
+        <ul class="space-y-2 font-medium px-3">
             <li>
-                <a routerLink="profile" routerLinkActive="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                    <span><i class="fa-solid fa-user"></i></span>
+                <a routerLink="profile" routerLinkActive="bg-gray-100"
+                    class="flex items-center p-2 rounded-lg hover:bg-gray-100">
+                    <span><i class="fa-regular fa-user"></i></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
                 </a>
             </li>
             <li>
-                <a routerLink="repos" routerLinkActive="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
+                <a routerLink="repos" routerLinkActive="bg-gray-100"
+                    class="flex items-center p-2 rounded-lg hover:bg-gray-100">
                     <span><i class="fa-brands fa-github"></i></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Repos</span>
                 </a>
             </li>
             <li>
-                <a routerLink="gaas" routerLinkActive="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                    <span><i class="fa-solid fa-heart"></i></span>
+                <a routerLink="gaas" routerLinkActive="bg-gray-100"
+                    class="flex items-center p-2 rounded-lg hover:bg-gray-100">
+                    <span><i class="fa-regular fa-heart"></i></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Gaas</span>
                 </a>
             </li>
             <li>
-                <a routerLink="generator" routerLinkActive="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                    <span><i class="fa-solid fa-file"></i></span>
+                <a routerLink="generator" routerLinkActive="bg-gray-100"
+                    class="flex items-center p-2 rounded-lg hover:bg-gray-100">
+                    <span><i class="fa-regular fa-file"></i></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Resume Generator</span>
                 </a>
             </li>
             <li>
-                <a routerLink="jobs" routerLinkActive="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                    <span><i class="fa-solid fa-box-archive"></i></span>
+                <a routerLink="jobs" routerLinkActive="bg-gray-100"
+                    class="flex items-center p-2 rounded-lg hover:bg-gray-100">
+                    <span><i class="fa-regular fa-file-zipper"></i></span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Job Description Archival</span>
                 </a>
             </li>
         </ul>
+        
+        <div class="mt-auto px-3">
+            <hr class="mb-3 hr-stylish">
+            <div class="flex justify-between w-full bg-white rounded-lg shadow-2xl h-[70px]">
+                <div class="flex items-center gap-1.5">
+                    <img src="./imges/image.png" alt="Profile picture" class="w-auto h-[50px] rounded-[2rem] ms-3">
+                    <div class="">
+                        <h1 class="font-bold text-lg">youssef</h1>
+                        <h2 class="font-light text-xs text-gray-500">asdasdasdasd.com</h2>
+                    </div>
+                </div>
+                <button class="text-red-700 hover:text-red-800 transition-colors flex items-center justify-center p-2">
+                    <i class="fa-solid fa-right-from-bracket text-xl"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </aside>

@@ -1,0 +1,16 @@
+.asid-back {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.hr-stylish {
+    height: 2px;
+    opacity: 0.1;
+
+
+}
+
+.limelight-regular {
+    font-family: "Limelight", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
