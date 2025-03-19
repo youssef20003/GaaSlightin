@@ -29,12 +29,13 @@
 
 
 
+
 <section>
     <div class="flex justify-between w-[70%] mx-auto my-5">
         <a routerLink="home" class="flex items-center space-x-3 rtl:space-x-reverse">
             <span class="self-center text-2xl font-semibold whitespace-nowrap">GaaSlightin</span>
         </a>
-        <button type="button"
+        <button type="button" routerLink="/auth" (click)="authwithgithub()"
             class="text-white bg-[#24292F] hover:bg-[#24292F]/90   font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2">
             <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                 viewBox="0 0 20 20">

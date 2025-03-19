@@ -12,16 +12,17 @@ import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 import { ResgenratorComponent } from './pages/resgenrator/resgenrator.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { JobDescreptionComponent } from './pages/job-descreption/job-descreption.component';
+import { authGuardGuard } from './core/guard/auth_guard/auth-guard.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'profile', pathMatch: 'full' },
     // Authentication Routes
     {
-        path: '', component: AuthLayoutComponent, children: [     
+        path: '', component: AuthLayoutComponent, children: [    
+            { path: '', redirectTo: 'home', pathMatch: 'full' }, 
             { path: 'home', component: LandingComponent, title: 'Home' },
             { path: 'auth', component: AuthComponent, title: 'auth' },
             { path: 'signup', component: SignupComponent, title: 'Signup' }
-        ]
+        ] 
     },
 
     // Main Layout Routes
@@ -37,9 +38,6 @@ export const routes: Routes = [
             { path: 'generator', component: ResgenratorComponent, title: 'Resume Generator' },
             { path: 'job-descraption', component: JobDescreptionComponent, title: 'description' }
 
-        ]
+        ] , canActivate : [authGuardGuard]
     },
-
-    // Redirect unknown routes to home
-    { path: '**', redirectTo: 'auth/home', pathMatch: 'full' }
 ];

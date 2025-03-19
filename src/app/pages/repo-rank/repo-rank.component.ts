@@ -3,7 +3,7 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-repo-rank',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './repo-rank.component.html',
   styleUrl: './repo-rank.component.css'
 })
