@@ -20,21 +20,118 @@
         </div>
     </div>
 
+    <!-- Sample Link Section -->
+    <div class="mt-5 text-center">
+        <p class="text-gray-600 mb-2">Try it out! Copy this sample job link:</p>
+        <div class="inline-flex items-center gap-2 bg-gray-100 p-2 rounded-lg cursor-pointer" (click)="copySampleUrl()">
+        <span class="text-blue-600 truncate max-w-xs">{{ sampleJobUrl }}</span>
+        <button class="text-gray-500 hover:text-gray-700 focus:outline-none cursor-pointer">
+            <i class="fa-solid fa-copy" *ngIf="!isCopied"></i>
+            <span *ngIf="isCopied" class="text-green-500">Copied!</span>
+        </button>
+        </div>
+    </div>
 
+    <div class="mt-5">
+        <form class="flex items-center max-w-sm mx-auto" (ngSubmit)="saveJob()">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <i class="fa-solid fa-link text-gray-500"></i>
+            </div>
+            <input 
+                type="text" 
+                id="simple-search" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                placeholder="Job Link ..." 
+                [(ngModel)]="jobUrl" 
+                name="jobUrl" 
+                required
+                [disabled]="isSaving"
+            />
+            </div>
+
+            <button 
+            type="submit" 
+            class="flex items-center gap-2 p-2.5 ms-2 text-md font-medium text-white bg-green-dark rounded-lg border-green-light cursor-pointer "
+            [disabled]="isSaving">
+                <span *ngIf="isSaving" class="inline-flex items-center">
+                    <svg class="w-5 h-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </span>
+                <span *ngIf="!isSaving" class="flex items-center gap-2">
+                <i class="fa-regular fa-save"></i>
+                <span>Generate</span>
+                </span>
+            </button>
+        </form>
+    </div>
+
+
+    
     <div class="flex flex-wrap justify-center mt-[50px]">
-        @for (item of jobListings; track $index) {
+        <span *ngIf="isLoading" class="inline-flex items-center">
+            <svg class="w-5 h-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </span>
+        @for (item of jobResponse; track $index) {
             <div
                 class=" w-[35%]  ms-6 my-2 p-2 flex justify-between  bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8">
                 <div>
-                    <h2 class="font-bold text-[#064420]">{{item.position}}</h2>
-                    <h2 class="font-bold text-sm"> {{item.companyName}}</h2>
-                    <h2 class="text-sm"> {{item.date}}</h2>
+                    <h2 class="font-bold text-[#064420]">{{item.title}}</h2>
+                    <h2 class="font-bold text-sm"> {{item.company}}</h2>
+                    <h2 class="text-sm"> {{item.source}}</h2>
+                    <span>{{ item.archive_date | date:'medium' }}</span>
                 </div>
                 <div class="self-end m-0 p-0">
-                    <button type="button" class="btn-main " routerLink="/job-descraption">View</button>
+                    <a type="button" class="btn-main hover:cursor-pointer" [routerLink]="['/jobs', item._id]">View</a>
                 </div>
             </div>
-        }
-    
+        } 
+    </div>
+
+    <div class="grid gap-3 w-2/3 mx-auto">
+        <h3 class="text-2xl">Recent Jobs</h3>
+        <div class="grid gap-2 mb-3">
+            <div class="py-2 px-4 bg-gray-50 rounded-md">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-1">
+                    <h4 class="text-2xl font-semibold">Front-End Developer, Vue</h4>
+                    <div class="flex gap-x-1">
+                        <h5>Incorta</h5>
+                        <span>|</span>
+                        <a class="text-green-dark cursor-pointer" [routerLink]="['/jobs', 1234]"> 
+                            <i class="fa-solid fa-link"></i>
+                            Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div>
+                    Skills : 
+                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border-blue-400 mr-0.5">Default</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border-blue-400 mr-0.5">Default</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border-blue-400 mr-0.5">Default</span>
+                </div>
+
+                <!-- Archive time -->
+                <div class="flex justify-between items-center">
+                    <span class="">
+                        <i class="fa-regular fa-clock mr-2"></i>
+                        13 March 2025
+                    </span>
+                    <button class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 hover:text-white cursor-pointer rounded-lg group bg-gradient-to-br from-green-700 to-green-800 group-hover:from-teal-300 group-hover:to-lime-300 focus:ring-4 focus:outline-none focus:ring-lime-200">
+                        <span class="relative px-7 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                        View
+                        </span>
+                    </button>   
+                </div>
+            </div>
+        </div>
     </div>
 </section>

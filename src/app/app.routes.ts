@@ -36,7 +36,7 @@ export const routes: Routes = [
             { path: 'resumes', component: ResumeComponent, title: 'Resumes' },
             { path: 'blog', component: BlogPostComponent, title: 'Blog' },
             { path: 'generator', component: ResgenratorComponent, title: 'Resume Generator' },
-            { path: 'job-descraption', component: JobDescreptionComponent, title: 'description' }
+            { path: 'jobs/:id', component: JobDescreptionComponent, title: 'description' }
 
         ] , canActivate : [authGuardGuard]
     },
