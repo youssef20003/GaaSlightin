@@ -61,10 +61,10 @@
             <hr class="mb-3 hr-stylish">
             <div class="flex justify-between w-full bg-white rounded-lg shadow-2xl h-[70px]">
                 <div class="flex items-center gap-1.5">
-                    <img src="./imges/image.png" alt="Profile picture" class="w-auto h-[50px] rounded-[2rem] ms-3">
+                    <img [src]='profiledata.profileImage' alt="Profile picture" class="w-auto h-[50px] rounded-[2rem] ms-3">
                     <div class="">
-                        <h1 class="font-bold text-lg">youssef</h1>
-                        <h2 class="font-light text-xs text-gray-500">asdasdasdasd.com</h2>
+                        <h1 class="font-bold text-s">{{profiledata.displayName}}</h1>
+                        <h2 class="font-light text-xs text-gray-500">{{profiledata.userName}}</h2>
                     </div>
                 </div>
                 <button (click)="logout()" class="text-red-700 hover:text-red-800 transition-colors flex items-center justify-center p-2">

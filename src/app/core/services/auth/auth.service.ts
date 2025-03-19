@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { envo } from '../../../shared/env/envo';
 import { env } from 'process';
@@ -18,5 +18,12 @@ export class AuthService {
 
   getaccesstoken(code: string): Observable<any> {
     return this._HttpClient.get(`${envo.baseurl}/api/v0/auth/github?code=${encodeURIComponent(code)}`)
+  }
+
+  getuserdata(token : string):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this._HttpClient.get(`${envo.baseurl}/api/v0/profile` , { headers })
   }
 }

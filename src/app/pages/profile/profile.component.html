@@ -1,11 +1,11 @@
 <section class="h-screen flex flex-col justify-between">
     <div class="flex justify-start gap-4 ms-2">
         <div>
-            <img class="w-[250px] h-[250px] rounded-lg" src="./images.jpeg" alt="">
+            <img class="w-[250px] h-[250px] rounded-lg" [src]="profiledata?.profileImage" alt="Profile Image">
         </div>
         <div class="w-[300px] h-[300px] flex flex-col justify-center ">
-            <h1 class="font-bold text-6xl">yousef</h1>
-            <h2 class="font- text-2xl">yousseef-11</h2>
+            <h1 class="font-bold text-6xl">{{profiledata.displayName}}</h1>
+            <h2 class="font- text-2xl">{{profiledata.userName}}</h2>
             <h2 class="font-light text-4xl mt-3">frontend</h2>
         </div>
     </div>
@@ -21,9 +21,9 @@
         <div>
             <a class="block max-w-sm p-6 bg-white border border-green-dark rounded-lg shadow-sm ">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><span class="me-1"><i
-                            class="fa-brands fa-github"></i></span>github usernmae</h5>
+                            class="fa-brands fa-github"></i></span>{{profiledata.userName}}</h5>
                 <p class="font-normal text-gray-700 dark:text-gray-400"> bla bla</p>
-                <button class="btn-main mt-3">view account</button>
+                <button (click)="gotogithubaccount()" class="btn-main mt-3">view account</button>
             </a>
         </div>
         <div>

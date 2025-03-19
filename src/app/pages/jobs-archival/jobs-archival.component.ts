@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class JobsArchivalComponent implements OnInit{
   baseUrl = 'https://localhost:3000';
   // token will be updated
-  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlNTJiZGVkMy1lOTZkLTQ4NTYtODg3YS00NjkwMDc3NDMxZTIiLCJpYXQiOjE3NDI0MDU1MjEsImV4cCI6MTc0MzAxMDMyMX0._o4KbnSFhG3RCYVUx1ta42EH0LBklReUt30ChADc2Uc"
+  token = sessionStorage.getItem('Accesstoken')
   jobResponse : Job[] = [];
   jobUrl: string = '';
   isSaving: boolean = false;

@@ -10,7 +10,6 @@ export interface Job {
     updatedAt: string;
     __v: number;
 }
-  
 export interface JobDescription {
     _id: string;
     jobId: string;
