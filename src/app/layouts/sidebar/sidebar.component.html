@@ -55,21 +55,23 @@
             </li>
         </ul>
         
-        <div class="mt-auto px-3">
-            <div class="grid gap-y-2 w-full bg-white rounded-lg shadow-md">
-                <div class="flex items-center gap-1.5 pt-2">
-                    <img [src]='profiledata.profileImage' alt="Profile picture" class="w-auto h-[50px] rounded-[2rem] ms-3">
-                    <div class="">
-                        <h1 class="font-bold text-s">{{profiledata.displayName}}</h1>
-                        <h2 class="font-light text-xs text-gray-500">{{profiledata.userName}}</h2>
+        @if(profiledata){
+            <div class="mt-auto px-3">
+                <div class="grid gap-y-2 w-full bg-white rounded-lg shadow-md">
+                    <div class="flex items-center gap-1.5 pt-2">
+                        <img [src]='profiledata.profileImage' alt="Profile picture" class="w-auto h-[50px] rounded-[2rem] ms-3">
+                        <div class="">
+                            <h1 class="font-bold text-s">{{profiledata.displayName}}</h1>
+                            <h2 class="font-light text-xs text-gray-500">{{profiledata.userName}}</h2>
+                        </div>
                     </div>
+                    <button (click)="logout()" class="text-red-700 transition-colors flex gap-x-2 items-center justify-center py-1 border border-red-700 rounded-md hover:bg-red-700 hover:text-white cursor-pointer">
+                        <span>Log Out</span>
+                        <i class="fa-solid fa-right-from-bracket text-md"></i>
+                    </button>
                 </div>
-                <button (click)="logout()" class="text-red-700 transition-colors flex gap-x-2 items-center justify-center py-1 border border-red-700 rounded-md hover:bg-red-700 hover:text-white cursor-pointer">
-                    <span>Log Out</span>
-                    <i class="fa-solid fa-right-from-bracket text-md"></i>
-                </button>
             </div>
-        </div>
+        }
 
     </div>
 </aside>

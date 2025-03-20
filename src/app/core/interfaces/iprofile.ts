@@ -3,12 +3,12 @@ export interface Iprofile {
     userName: string
     displayName: string
     profileImage: string
-    createdAt: string
-    updatedAt: string
     bio: string
-    company: string
+    company: any
     location: string
     portfolio: string
     repositories: string[]
+    createdAt: string
+    updatedAt: string
     __v: number
 }

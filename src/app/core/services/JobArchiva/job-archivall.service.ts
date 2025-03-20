@@ -15,7 +15,6 @@ export class JobArchivallService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
     return this._HttpClient.get(`${envo.baseurl}/api/v0/jobs` , { headers })
   }
 

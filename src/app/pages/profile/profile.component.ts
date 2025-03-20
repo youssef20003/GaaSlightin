@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this._AuthService.getuserdata(sessionStorage.getItem('Accesstoken')!).subscribe({
       next : (res)=>{
-        console.log(res.data)
         this.profiledata = res.data
         console.log(this.profiledata)
         // this.getReposDetails();
