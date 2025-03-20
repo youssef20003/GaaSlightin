@@ -22,6 +22,10 @@ export class ProfileComponent implements OnInit {
       next : (res)=>{
         this.profiledata = res.data
         console.log(this.profiledata)
+
+        for(let repo of this.profiledata.repositories) {
+          console.log(repo);
+        }
         // this.getReposDetails();
       }
     })
