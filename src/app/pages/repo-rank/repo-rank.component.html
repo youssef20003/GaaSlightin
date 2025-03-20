@@ -13,7 +13,8 @@
         </div>
 
         <!-- overflow y need to fix or remove -->
-        <div >
+        <div>
+
             <button data-popover-target="popover-description" data-popover-placement="left" type="button"><svg
                     class="w-5 h-5 ms-2 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor"
                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -40,8 +41,17 @@
         </div>
     </div>
     <div class="grid gap-3 p-3">
-        @for (item of items; track $index) {
-        <div class="w-full border border-gray-200 rounded-lg " [class]="getBackgroundClass($index)">
+        <div class="flex items-center gap-x-4 p-4">
+            <input type="text" #repo
+                class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter repo" />
+            <button (click)="rank(repo.value)"
+                class="btn-main px-4 py-2 bg-blue-600 font-semibold rounded-md hover:bg-blue-700 transition-colors">
+                Rank Your Repo 
+            </button>
+        </div>
+        @for (item of reporank | sort:'codeComplexity':'desc'; track item.name) {
+        <div class="w-full border border-gray-200 rounded-lg" [class]="getBackgroundClass($index)">
             <div class="flex gap-x-2 items-center">
                 <span class="text-5xl font-extrabold p-1 top-0 left-0 bg-black text-white rounded-br-md rounded-tl-md">
                     <span [class]="getTextClass($index)">#{{ $index + 1 }}</span>
@@ -49,12 +59,8 @@
                 <h5 class="flex-1 text-2xl font-bold text-gray-900">{{ item.name }}</h5>
                 <div>
                     <span
-                        class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-yellow-300">
-                        {{ item.stars }} star
-                    </span>
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-blue-300">
-                        {{ item.forks }} fork
+                        class="bg-yellow-100 text-yellow-800 text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm border border-yellow-300">
+                        {{ item.codeComplexity }}
                     </span>
                 </div>
             </div>

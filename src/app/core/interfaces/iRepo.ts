@@ -1,7 +1,8 @@
 export interface IRepo {
+    id: number
     name: string
     about: string
     stars: number
-    froks: number
-    topics: string[]
+    forks: number
+    topics: any[]
 }

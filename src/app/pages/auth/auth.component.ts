@@ -12,13 +12,14 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AuthComponent implements OnInit  {
   code: string | null = null;
+  isLoading: boolean = false;
   constructor(private routes: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object , private _Router : Router){}
   readonly _AuthService = inject(AuthService)
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+
       this.code = this.routes.snapshot.queryParamMap.get('code');
       console.log('[Browser] Code from URL:', this.code);
-  
       if (this.code) {
         this._AuthService.getaccesstoken(this.code).subscribe({
           next: (res) => {
@@ -29,7 +30,8 @@ export class AuthComponent implements OnInit  {
           },
           error: (err) => {
             console.error('[Browser] Error fetching access token:', err);
-          }
+          },
+          
         });
       } else {
         console.warn('[Browser] No code found in URL');
