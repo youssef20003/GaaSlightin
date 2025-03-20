@@ -32,6 +32,16 @@ export class RepoRankComponent implements OnInit {
   ngOnInit(): void {
     this._RepoRankService.getreposranke().subscribe({
       next : (res)=>{
+        console.log(res)
+        this.reporank= res.message
+      }
+    })
+  }
+
+  getreporank():void{
+    this._RepoRankService.getreposranke().subscribe({
+      next : (res)=>{
+        console.log(res)
         this.reporank= res.message
       }
     })
@@ -42,6 +52,7 @@ export class RepoRankComponent implements OnInit {
     this._RepoRankService.rankrepo(reponame).subscribe({
       next:(res)=>{
         console.log(res)
+        this.getreporank()
 
       }
     })

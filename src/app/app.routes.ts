@@ -13,6 +13,7 @@ import { ResgenratorComponent } from './pages/resgenrator/resgenrator.component'
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { JobDescreptionComponent } from './pages/job-descreption/job-descreption.component';
 import { authGuardGuard } from './core/guard/auth_guard/auth-guard.guard';
+import { PostComponent } from './pages/post/post.component';
 
 export const routes: Routes = [
     // Authentication Routes
@@ -36,7 +37,8 @@ export const routes: Routes = [
             { path: 'resumes', component: ResumeComponent, title: 'Resumes' },
             { path: 'blog', component: BlogPostComponent, title: 'Blog' },
             { path: 'generator', component: ResgenratorComponent, title: 'Resume Generator' },
-            { path: 'jobs/:id', component: JobDescreptionComponent, title: 'description' }
+            { path: 'jobs/:id', component: JobDescreptionComponent, title: 'description' },
+            { path: 'post/:id', component: PostComponent, title: 'post' }
 
         ] , canActivate : [authGuardGuard]
     },

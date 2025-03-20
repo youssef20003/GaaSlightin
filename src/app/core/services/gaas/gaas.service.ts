@@ -25,6 +25,21 @@ export class GaasService {
     });
     
     return this._HttpClient.get(`${envo.baseurl}/api/v0/github/repos` , {headers})
-
   }
+  
+  getallpost():Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('Accesstoken')}`
+    });
+    return this._HttpClient.get(`${envo.baseurl}/api/v0/posts` , {headers})
+  }
+  
+
+  getapost(id : string):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('Accesstoken')}`
+    });
+    return this._HttpClient.get(`${envo.baseurl}/api/v0/posts/${id}`,  {headers})
+  }
+
 }
