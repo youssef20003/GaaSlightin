@@ -69,7 +69,7 @@
         </form>
     </div>
 
-    <section *ngIf="jobResponse" class="grid place-content-center my-8 text-center">
+    <section *ngIf="monkeyFlag" class="grid place-content-center my-8 text-center">
         <!-- <i class="fa-solid fa-face-sad-tear text-2xl text-orange-300"></i> -->
         <picture>
             <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f648/512.webp" type="image/webp">
@@ -94,11 +94,11 @@
                         <div class="py-2 px-4 bg-gray-50 rounded-md">
                             <!-- Header -->
                             <div class="flex justify-between items-center mb-1">
-                                <h4 class="text-2xl font-semibold">{{ item.job.title }}</h4>
+                                <h4 class="text-2xl font-semibold">{{ item.title }}</h4>
                                 <div class="flex gap-x-1">
-                                    <h5>{{ item.job.company }}</h5>
+                                    <h5>{{ item.company }}</h5>
                                     <span>|</span>
-                                    <a class="text-green-dark cursor-pointer" [href]="item.job.source"> 
+                                    <a class="text-green-dark cursor-pointer" [href]="item.source"> 
                                         <i class="fa-solid fa-link"></i>
                                         Website
                                     </a>
@@ -109,7 +109,7 @@
                             <div>
                                 Skills : 
                                 <span   
-                                    *ngFor="let skill of item.description.skills | slice:0:3" 
+                                    *ngFor="let skill of item.skills | slice:0:3" 
                                     [ngStyle]="{'background-color': getSkillColor(skill)}"
                                     class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border-blue-400 mr-0.5"
                                 >
@@ -121,10 +121,10 @@
                             <div class="flex justify-between items-center">
                                 <span class="">
                                     <i class="fa-regular fa-clock mr-2"></i>
-                                    {{ item.job.archive_date }}
+                                    {{ item.archive_date }}
                                 </span>
                                 <a class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 hover:text-white cursor-pointer rounded-lg group bg-gradient-to-br from-green-700 to-green-800 group-hover:from-teal-300 group-hover:to-lime-300 focus:ring-4 focus:outline-none focus:ring-lime-200" 
-                                    [routerLink]="['/jobs', item.job._id]">
+                                    [routerLink]="['/jobs', item._id]">
                                     <span class="relative px-7 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
                                     View
                                     </span>

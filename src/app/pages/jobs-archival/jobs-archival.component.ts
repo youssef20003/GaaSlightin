@@ -4,6 +4,7 @@ import { Job, JobResponse } from '../../models/job.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms';
+import { IJobMini } from '../../core/interfaces/iJobMini';
 
 @Component({
   selector: 'app-jobs-archival',
@@ -12,15 +13,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './jobs-archival.component.css'
 })
 export class JobsArchivalComponent implements OnInit{
-  baseUrl = 'https://back-end-zeta-lime.vercel.app';
+  baseUrl = 'http://localhost:3000';
   // token will be updated
   token = sessionStorage.getItem('Accesstoken');
-  jobResponse : JobResponse[] = [];
+  jobResponse !: IJobMini[];
   jobUrl: string = '';
   isSaving: boolean = false;
   sampleJobUrl: string = 'https://careers.procore.com/jobs/sr-manager-software-engineering-bengaluru-ka-india-ae9acb81-dbd7-48ce-9be1-1033d0e29964'; // Sample URL
   isCopied: boolean = false; // Track if copied
   isLoading: boolean = true;
+  monkeyFlag: boolean = true;
 
   //  sampleJobResponses: JobResponse[] = [
   //   {
@@ -127,12 +129,13 @@ export class JobsArchivalComponent implements OnInit{
 
     // Make the API call
     this.http
-      .get<JobResponse[]>(`${this.baseUrl}/api/v0/jobs`, { headers })
+      .get<IJobMini[]>(`${this.baseUrl}/api/v0/jobs`, { headers })
       .subscribe({
         next: (response) => {
           this.jobResponse = response; // Store the response
           console.log('Jobs fetched:', this.jobResponse);
           this.isLoading = false;
+          this.monkeyFlag = false;
         },
         error: (error) => {
           console.error('Error fetching jobs:', error);

@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './job-descreption.component.css'
 })
 export class JobDescreptionComponent implements OnInit{
-  baseUrl = 'https://back-end-zeta-lime.vercel.app';
+  baseUrl = 'http://localhost:3000';
   token = sessionStorage.getItem('Accesstoken');
   jobResponse: JobResponse | null = null; // Store the API response
   jobId: string | null = null;
@@ -31,7 +31,7 @@ export class JobDescreptionComponent implements OnInit{
   ngOnInit(): void {
     this.jobId = this.route.snapshot.paramMap.get('id');
     if (this.jobId) {
-      //this.fetchJob(this.jobId);
+      this.fetchJob(this.jobId);
     }
   }
 
