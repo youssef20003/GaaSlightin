@@ -4,27 +4,34 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { JobResponse } from '../../models/job.model'; // Adjust path as needed
 import { FormsModule } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-job-descreption',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './job-descreption.component.html',
   styleUrl: './job-descreption.component.css'
 })
 export class JobDescreptionComponent implements OnInit{
-  baseUrl = 'https://localhost:3000';
-  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlNTJiZGVkMy1lOTZkLTQ4NTYtODg3YS00NjkwMDc3NDMxZTIiLCJpYXQiOjE3NDI0MDU1MjEsImV4cCI6MTc0MzAxMDMyMX0._o4KbnSFhG3RCYVUx1ta42EH0LBklReUt30ChADc2Uc";
+  baseUrl = 'https://back-end-zeta-lime.vercel.app';
+  token = sessionStorage.getItem('Accesstoken');
   jobResponse: JobResponse | null = null; // Store the API response
   jobId: string | null = null;
   activeTab: 'fulltext' | 'skills' = 'fulltext';
   showDeleteConfirm: boolean = false;
-
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
+  notFound: boolean = false;
+  
+  constructor(
+    private route: ActivatedRoute, 
+    private http: HttpClient, 
+    private router: Router,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
     this.jobId = this.route.snapshot.paramMap.get('id');
     if (this.jobId) {
-      this.fetchJob(this.jobId);
+      //this.fetchJob(this.jobId);
     }
   }
 
@@ -39,9 +46,13 @@ export class JobDescreptionComponent implements OnInit{
         next: (response) => {
           this.jobResponse = response;
           console.log('Job fetched:', this.jobResponse);
+          this.titleService.setTitle(this.jobResponse.job.title || '404 Error')
         },
         error: (error) => {
           console.error('Error fetching job:', error);
+          this.notFound = true;
+          console.log(this.notFound, 'job not found')
+          this.titleService.setTitle("Not Found Job");
         }
       });
   }

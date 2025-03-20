@@ -1,9 +1,11 @@
 <section>
   <div class="flex justify-between items-center border-b border-gray-100 px-6 py-3">
     <div class="mr-4">
-      <span class="border border-gray-200 rounded-full w-9 h-9 flex items-center justify-center hover:bg-green-dark hover:border-green-dark hover:text-white cursor-pointer">
+      <a class="border border-gray-200 rounded-full w-9 h-9 flex items-center justify-center hover:bg-green-dark hover:border-green-dark hover:text-white cursor-pointer"
+        routerLink="/jobs"
+        >
         <i class="fa-solid fa-arrow-left"></i>
-      </span>
+      </a>
     </div>
     <div class="flex-1">
         <h2 class="text-4xl font-bold mb-2">Job Archival</h2>
@@ -26,7 +28,13 @@
     </div>
   </div>
 
-  <section class="max-w-4xl mx-auto bg-white rounded-lg my-10">
+  <!-- Not Found Error - 404 -->
+  <section *ngIf="notFound" class="max-w-4xl mx-auto bg-white rounded-lg my-10 grid place-content-center text-center gapy-3">
+    <h1 class="text-green-dark text-5xl">404 Error</h1>
+    <h2 class="text-2xl">This Job Is Not Found</h2>
+  </section>
+
+  <section *ngIf="!notFound && jobResponse" class="max-w-4xl mx-auto bg-white rounded-lg my-10">
     <div class="bg-gray-100 p-1 px-3 rounded-t-lg">
       <div class="flex justify-between">
         <span>
@@ -34,7 +42,7 @@
           <span>Saved Job</span>
         </span>
         <span>
-          <span>Archived At : 20 June 25</span>
+          <span>Archived At : {{ jobResponse?.job?.archive_date | date:'mediumDate' }}</span>
         </span>
       </div>
       <div>
@@ -82,37 +90,45 @@
       </div>
 
       <!-- Tabs for Full Text and Skills -->
-      <div class="mt-6">
+      <!-- Tabs Section -->
+      <div class="mt-6" *ngIf="jobResponse">
+        <!-- Tab Buttons -->
         <div class="bg-gray-100 rounded-md w-fit">
           <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 p-1" id="tabList" role="tablist">
-            <li class="mr-2" role="presentation">
-              <button class="inline-block py-2 px-4 bg-white text-black rounded-md cursor-pointer hover:text-black" id="fulltext-tab" type="button" role="tab" aria-controls="fulltext" aria-selected="true" [ngClass]="{'bg-white text-black': activeTab === 'fulltext', 'bg-transparent': activeTab !== 'fulltext'}" (click)="activeTab = 'fulltext'">Full Text</button>
-            </li>
-            <li class="mr-2" role="presentation">
-              <button class="inline-block py-2 px-4 rounded-md cursor-pointer hover:text-black" id="skills-tab" type="button" role="tab" aria-controls="skills" aria-selected="false" [ngClass]="{'g-white text-black': activeTab === 'skills', 'bg-transparent': activeTab !== 'skills'}" (click)="activeTab = 'skills'">Skills</button>
+              <li class="mr-2" role="presentation">
+                <button class="inline-block py-2 px-4 rounded-md cursor-pointer hover:text-black"
+                        [ngClass]="{'bg-white text-black': activeTab === 'fulltext', 'bg-transparent': activeTab !== 'fulltext'}"
+                        (click)="activeTab = 'fulltext'"
+                        id="fulltext-tab"
+                        type="button"
+                        role="tab"
+                        aria-controls="fulltext"
+                        [attr.aria-selected]="activeTab === 'fulltext'">Description</button>
+              </li>
+             <li class="mr-2" role="presentation">
+                <button class="inline-block py-2 px-4 rounded-md cursor-pointer hover:text-black"
+                  [ngClass]="{'bg-white text-black': activeTab === 'skills', 'bg-transparent': activeTab !== 'skills'}"
+                  (click)="activeTab = 'skills'"
+                  id="skills-tab"
+                  type="button"
+                  role="tab"
+                  aria-controls="skills"
+                      [attr.aria-selected]="activeTab === 'skills'">Skills</button>
             </li>
           </ul>
         </div>
 
+        <!-- Tab Content -->
         <div id="tabContent" class="mt-4">
-          <!-- Full Text Tab (visible by default) -->
-          <div id="fulltext" role="tabpanel" aria-labelledby="fulltext-tab">
-            <p class="text-gray-700 whitespace-pre-wrap">
-              We are seeking a Senior Software Engineer to join our dynamic team. 
-              The ideal candidate will have strong experience in web development 
-              and a passion for creating scalable solutions. Responsibilities include 
-              designing and implementing new features, optimizing applications, 
-              and collaborating with cross-functional teams.
-            </p>
+          <!-- Full Text Tab -->
+          <div *ngIf="activeTab === 'fulltext'" id="fulltext" role="tabpanel" aria-labelledby="fulltext-tab">
+            <p class="text-gray-700 whitespace-pre-wrap">{{ jobResponse.description.fullText }}</p>
           </div>
 
-          <div id="skills" role="tabpanel" aria-labelledby="skills-tab">
+          <!-- Skills Tab -->
+          <div *ngIf="activeTab === 'skills'" id="skills" role="tabpanel" aria-labelledby="skills-tab">
             <ul class="list-disc pl-5 text-gray-700">
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>Node.js</li>
-              <li>AWS</li>
+              <li *ngFor="let skill of jobResponse.description.skills">{{ skill }}</li>
             </ul>
           </div>
         </div>

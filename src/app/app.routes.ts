@@ -31,7 +31,7 @@ export const routes: Routes = [
             
             { path: 'profile', component: ProfileComponent, title: 'Profile' },
             { path: 'gaas', component: GaasComponent, title: 'GAAS' },
-            { path: 'jobs', component: JobsArchivalComponent, title: 'Jobs'},
+            { path: 'jobs', component: JobsArchivalComponent, title: 'All Archival Jobs'},
             { path: 'repos', component: RepoRankComponent, title: 'Repositories' },
             { path: 'resumes', component: ResumeComponent, title: 'Resumes' },
             { path: 'blog', component: BlogPostComponent, title: 'Blog' },

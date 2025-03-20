@@ -12,15 +12,105 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './jobs-archival.component.css'
 })
 export class JobsArchivalComponent implements OnInit{
-  baseUrl = 'https://localhost:3000';
+  baseUrl = 'https://back-end-zeta-lime.vercel.app';
   // token will be updated
-  token = sessionStorage.getItem('Accesstoken')
-  jobResponse : Job[] = [];
+  token = sessionStorage.getItem('Accesstoken');
+  jobResponse : JobResponse[] = [];
   jobUrl: string = '';
   isSaving: boolean = false;
   sampleJobUrl: string = 'https://careers.procore.com/jobs/sr-manager-software-engineering-bengaluru-ka-india-ae9acb81-dbd7-48ce-9be1-1033d0e29964'; // Sample URL
   isCopied: boolean = false; // Track if copied
   isLoading: boolean = true;
+
+  //  sampleJobResponses: JobResponse[] = [
+  //   {
+  //       job: {
+  //           _id: "job_001",
+  //           title: "Software Engineer",
+  //           company: "Tech Corp",
+  //           archive_date: "2025-01-15",
+  //           source: "LinkedIn",
+  //           url: "https://www.linkedin.com/job/001",
+  //           userId: "user_001",
+  //           createdAt: "2025-01-01T12:00:00Z",
+  //           updatedAt: "2025-01-10T12:00:00Z",
+  //           __v: 0
+  //       },
+  //       description: {
+  //           _id: "desc_001",
+  //           jobId: "job_001",
+  //           userId: "user_001",
+  //           url: "https://www.linkedin.com/job/001",
+  //           location: "New York, USA",
+  //           fullText: "We are looking for a skilled software engineer to join our team.",
+  //           posting_date: "2025-01-02",
+  //           skills: ["JavaScript", "TypeScript", "Angular", "Node.js"],
+  //           createdAt: "2025-01-02T14:00:00Z",
+  //           updatedAt: "2025-01-10T14:00:00Z",
+  //           __v: 0
+  //       }
+  //   },
+  //   {
+  //       job: {
+  //           _id: "job_002",
+  //           title: "Data Scientist",
+  //           company: "AI Solutions",
+  //           archive_date: "2025-02-20",
+  //           source: "Indeed",
+  //           url: "https://www.indeed.com/job/002",
+  //           userId: "user_002",
+  //           createdAt: "2025-02-01T09:30:00Z",
+  //           updatedAt: "2025-02-10T10:15:00Z",
+  //           __v: 0
+  //       },
+  //       description: {
+  //           _id: "desc_002",
+  //           jobId: "job_002",
+  //           userId: "user_002",
+  //           url: "https://www.indeed.com/job/002",
+  //           location: "San Francisco, USA",
+  //           fullText: "Seeking a data scientist with experience in Python, TensorFlow, and data analysis.",
+  //           posting_date: "2025-02-05",
+  //           skills: ["Python", "TensorFlow", "Machine Learning", "Data Analysis"],
+  //           createdAt: "2025-02-05T11:45:00Z",
+  //           updatedAt: "2025-02-10T12:00:00Z",
+  //           __v: 0
+  //       }
+  //   },
+  //   {
+  //       job: {
+  //           _id: "job_003",
+  //           title: "DevOps Engineer",
+  //           company: "Cloud Innovators",
+  //           archive_date: "2025-03-10",
+  //           source: "Glassdoor",
+  //           url: "https://www.glassdoor.com/job/003",
+  //           userId: "user_003",
+  //           createdAt: "2025-03-01T08:15:00Z",
+  //           updatedAt: "2025-03-08T10:00:00Z",
+  //           __v: 0
+  //       },
+  //       description: {
+  //           _id: "desc_003",
+  //           jobId: "job_003",
+  //           userId: "user_003",
+  //           url: "https://www.glassdoor.com/job/003",
+  //           location: "Remote",
+  //           fullText: "Looking for an experienced DevOps engineer with expertise in AWS, Docker, and Kubernetes.",
+  //           posting_date: "2025-03-05",
+  //           skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
+  //           createdAt: "2025-03-05T13:00:00Z",
+  //           updatedAt: "2025-03-08T15:30:00Z",
+  //           __v: 0
+  //       }
+  //   }
+  //   ];
+
+  private skillColors: { [key: string]: string } = {
+    'html': 'orange',
+    'go': 'blue',
+    'markdown': 'gray'
+  };
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -37,7 +127,7 @@ export class JobsArchivalComponent implements OnInit{
 
     // Make the API call
     this.http
-      .get<Job[]>(`${this.baseUrl}/api/v0/jobs`, { headers })
+      .get<JobResponse[]>(`${this.baseUrl}/api/v0/jobs`, { headers })
       .subscribe({
         next: (response) => {
           this.jobResponse = response; // Store the response
@@ -95,5 +185,9 @@ export class JobsArchivalComponent implements OnInit{
     }).catch(err => {
       console.error('Failed to copy:', err);
     });
+  }
+
+  getSkillColor(skill: string): string {
+    return this.skillColors[skill.toLowerCase()] || 'white'; // Default to white if no match
   }
 }
