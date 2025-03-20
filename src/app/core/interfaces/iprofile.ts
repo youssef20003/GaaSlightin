@@ -5,5 +5,10 @@ export interface Iprofile {
     profileImage: string
     createdAt: string
     updatedAt: string
+    bio: string
+    company: string
+    location: string
+    portfolio: string
+    repositories: string[]
     __v: number
 }

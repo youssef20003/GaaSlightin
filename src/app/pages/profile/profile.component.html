@@ -1,38 +1,94 @@
-<section class="h-screen flex flex-col justify-between">
-    <div class="flex justify-start gap-4 ms-2">
-        <div>
-            <img class="w-[250px] h-[250px] rounded-lg" [src]="profiledata?.profileImage" alt="Profile Image">
+<!-- cover -->
+<div class="w-full h-50 bg-amber-200 cover"></div>
+
+<section class="px-6 py-3">
+    <section class="flex flex-col gap-y-9">
+        <!-- Main Info -->
+        <div class="flex justify-between items-center gap-4 ms-2 -mt-[120px]">
+            <div class="flex-1">
+                <img class="w-[250px] h-[250px] rounded-full border-4 border-white" [src]="profiledata?.profileImage" alt="Profile Image">
+                <div class="ml-2 mt-1 grid gap-y-1">
+                    <h1 class="font-bold text-3xl ">{{profiledata.displayName}}</h1>
+                    <a class="font- text-xl text-gray-700 flex items-center gap-x-2" [href]="`https://github.com/${profiledata.userName}`">
+                        <i class="fa-brands fa-github"></i>
+                        {{profiledata.userName}}
+                    </a>
+                    <h2 class="font- text-lg flex items-center gap-x-2">
+                        <i class="fa-solid fa-location"></i>
+                        <span>{{profiledata.location}}</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center ">
+                <span class="py-2 px-4 rounded-lg">
+                    Current Work
+                    <i class="fa-solid fa-briefcase text-lg pl-2"></i>
+                </span>
+                <h2 class="bg-gray-100 py-1 px-3 rounded-full text-lg mt-1">{{profiledata.company || "No Work"}}</h2>
+            </div>
         </div>
-        <div class="w-[300px] h-[300px] flex flex-col justify-center ">
-            <h1 class="font-bold text-6xl">{{profiledata.displayName}}</h1>
-            <h2 class="font- text-2xl">{{profiledata.userName}}</h2>
-            <h2 class="font-light text-4xl mt-3">frontend</h2>
+
+        <div class="w-[80%] ml-auto mr-auto grid gap-y-7">
+            <!-- Bio -->
+            <div class="">
+                <h1 class="font-bold text-xl ms-3 ">Bio : </h1>
+                <p class="mt-4 text-lg font-light ms-6">{{profiledata.bio}}</p>
+            </div>
+    
+            <!-- Repos -->
+            <div>
+                <h1 class="font-bold text-xl ms-3 ">Repositories :</h1>
+                <div class="bg-gray-100 rounded-md p-4 mt-4 grid gap-y-4">
+                    <!-- Repo -->
+                     @for (item of profiledata.repositories; track $index) {
+                         <div class="py-3 px-2 bg-white rounded-lg grid gap-y-2">
+                            <h3 class="text-lg font-semibold">{{ item }}</h3>
+                            <p>...</p>  
+                            <div class="flex justify-between items-center">
+                                <div class="flex gap-x-3">
+                                  <span>
+                                    <i class="fa-solid fa-star text-sm text-yellow-300"></i>
+                                    <span>0</span>
+                                    stars
+                                  </span>
+                                  <span>
+                                    <i class="fa-solid fa-code-branch text-sm"></i>
+                                    <span> 0 </span>
+                                    forks
+                                  </span>
+                                </div>
+                                <a type="button" 
+                                   class="flex items-center gap-x-1 cursor-pointer px-3 py-2 text-sm font-medium text-center text-black hover:text-white rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none border border-green-800"
+                                   href="https://github.com/{{ profiledata.userName }}/{{ item }}"
+                                   target="_blank">
+                                  <i class="fa-brands fa-github"></i>
+                                  Go To Repo
+                                </a>
+                              </div>  
+                         </div>
+                        }
+                    
+                </div>
+            </div>
         </div>
-    </div>
-    <div>
-        <h1 class="font-bold text-3xl ms-3 ">Bio</h1>
-        <p class=" w-[90%] mt-4 text-2xl font-light ms-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi soluta
-            praesentium quos esse? Laudantium adipisci aut temporibus laboriosam eligendi quibusdam rem similique non
-            distinctio suscipit deserunt libero deleniti maiores molestiae hic provident perspiciatis quidem accusantium
-            delectus aspernatur facere repudiandae, sequi illo. Veritatis dolores, vitae nemo delectus fugit veniam
-            distinctio laudantium.</p>
-    </div>
-    <div class="flex justify-center gap-10 ">
-        <div>
-            <a class="block max-w-sm p-6 bg-white border border-green-dark rounded-lg shadow-sm ">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><span class="me-1"><i
-                            class="fa-brands fa-github"></i></span>{{profiledata.userName}}</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400"> bla bla</p>
-                <button (click)="gotogithubaccount()" class="btn-main mt-3">view account</button>
-            </a>
-        </div>
-        <div>
-            <a class="block max-w-sm p-6 bg-white border border-green-dark rounded-lg shadow-sm ">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><span class="me-1"><i
-                            class="fa-brands fa-github"></i></span>linkedin username</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400"> bla bla</p>
-                <button class="btn-main mt-3">view account</button>
-            </a>
-        </div>
-    </div>
+
+        <!-- <div class="flex justify-center gap-10 ">
+            <div>
+                <a class="block max-w-sm p-6 bg-white border border-green-dark rounded-lg shadow-sm ">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><span class="me-1"><i
+                                class="fa-brands fa-github"></i></span>{{profiledata.userName}}</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"> bla bla</p>
+                    <button (click)="gotogithubaccount()" class="btn-main mt-3">view account</button>
+                </a>
+            </div>
+            <div>
+                <a class="block max-w-sm p-6 bg-white border border-green-dark rounded-lg shadow-sm ">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"><span class="me-1"><i
+                                class="fa-brands fa-github"></i></span>linkedin username</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"> bla bla</p>
+                    <button class="btn-main mt-3">view account</button>
+                </a>
+            </div>
+        </div> -->
+    </section>
 </section>

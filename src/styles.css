@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
@@ -18,7 +19,6 @@
         rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
 }
 
-
 body{
     font-family: "Roboto", sans-serif;
 }
@@ -29,8 +29,13 @@ body{
     border-radius: 5px;
 }
 
-
 .btn-main{
     @apply  text-[#064420] bg-white border-1 border-[#064420] hover:text-[#FDFAF6] hover:bg-[#064420] font-medium rounded-lg text-sm px-4 py-1  
 }
 
+.playfair-display-gaas {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: light;
+    font-style: normal;
+}
